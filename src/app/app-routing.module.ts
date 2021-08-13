@@ -6,6 +6,11 @@ import { ErrorPageComponent } from './shared/error-page/error-page.component';
 
 const routes : Routes = [
   {
+    //Clave para el lazyload
+    path:'auth',
+    loadChildren : () =>import('./auth/auth.module').then(m => m.AuthModule)
+  },
+  {
     path:'404',
     component: ErrorPageComponent
   },
