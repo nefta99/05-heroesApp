@@ -4,6 +4,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 //modulos
 import { HeroesRouterModule } from './heroes-router.module';
+import { MaterialModule } from '../material/material.module';
 
 
 //Componentes personales
@@ -27,6 +28,7 @@ import { ListadoComponent } from './pages/listado/listado.component';
   imports: [
     CommonModule,
     FlexLayoutModule,
+    MaterialModule,
     HeroesRouterModule
   ]
 })
