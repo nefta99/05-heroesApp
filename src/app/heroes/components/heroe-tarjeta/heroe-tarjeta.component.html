@@ -12,10 +12,14 @@
         </p>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-button color="warn">
+        <button mat-button color="warn" matTooltip="leer mas"
+            [routerLink]="['/heroes',heroe.id]"
+        >
             Leer mas...
         </button>
-        <button mat-button color="info">
+        <button mat-button color="info"  matTooltip="editar"
+            [routerLink]="['/heroes/editar',heroe.id]"
+        >
             editar
         </button>
     </mat-card-actions>
