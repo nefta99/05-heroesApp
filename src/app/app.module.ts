@@ -12,11 +12,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { ErrorPageComponent } from './shared/error-page/error-page.component';
 
 
+
+
+
 //Comentario
 @NgModule({
   declarations: [
     AppComponent,
     ErrorPageComponent
+    
+
   ],
   imports: [
     BrowserModule,
