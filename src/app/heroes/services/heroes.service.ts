@@ -3,6 +3,7 @@ import{ HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Heroe } from '../interfaces/heroes.interface';
+import { environment } from '../../../environments/environment';
 
 
 
@@ -11,15 +12,16 @@ import { Heroe } from '../interfaces/heroes.interface';
 })
 export class HeroesService {
 
+  private baseurl : string = environment.baseUrl;
   constructor(private http : HttpClient ) { }
 
 
   getHeroes() : Observable<Heroe[]>{
-    return this.http.get<Heroe[]>('http://localhost:3000/heroes');
+    return this.http.get<Heroe[]>(`${this.baseurl}/heroes`);
   }
 
   getHeroePorId(id : string ): Observable<Heroe>{
-    return this.http.get<Heroe>('http://localhost:3000/heroes/'+id);
+    return this.http.get<Heroe>(`${this.baseurl}/heroes/${id}`);
   }
 
 
