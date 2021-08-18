@@ -13,7 +13,7 @@ export class BuscarComponent implements OnInit {
 
   termino : string ='';
   heroes : Heroe[] =[];
-  hereoseleccionado! : Heroe;
+  hereoseleccionado : Heroe | undefined;
   constructor(private heroesservice : HeroesService) { }
 
   ngOnInit(): void {
@@ -21,10 +21,17 @@ export class BuscarComponent implements OnInit {
 
 
   busando(){
-    this.heroesservice.getSugerencias(this.termino ).subscribe(data => this.heroes = data)
-
+    this.heroesservice.getSugerencias(this.termino.trim() ).subscribe(data => this.heroes = data)
+  
   }
   opcionSeleccionada(evento : MatAutocompleteSelectedEvent){
+    if(!evento.option.value )
+    {
+      //con esto limpiamos la variable que se quedo con el rasto del otro super heroe
+      this.hereoseleccionado=undefined;
+     // CON ESTO SI ENCONTRAMOS VACIO EL ARREGLO NO HACEMOS NADA Y NO CONTINUA EL CODIGO FUENTE
+      return ;
+    }
     const heroe : Heroe  = evento.option.value;
     // con esto hacemos que se llene el combito
     this.termino = heroe.superhero;
