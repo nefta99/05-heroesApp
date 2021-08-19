@@ -10,6 +10,14 @@ import { switchMap } from 'rxjs/operators';
   selector: 'app-agregar',
   templateUrl: './agregar.component.html',
   styles: [
+
+    `
+      img{
+        width : 100%;
+        border-radius : 5px;
+      }
+
+    `
   ]
 })
 export class AgregarComponent implements OnInit {
@@ -41,6 +49,12 @@ export class AgregarComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+
+    if(!this.router.url.includes('editar')){
+      //si no incluye editar que no haga nada mas
+        return ;
+    }
+
     this.activateroute.params
     .pipe(switchMap(({id})=>this.heroeservicio.getHeroePorId(id)))
     .subscribe(data => this.heroe = data);
@@ -54,11 +68,14 @@ export class AgregarComponent implements OnInit {
 
     if(this.heroe.id){
       //Actualizar
+      console.log("Actualizar")
+      console.log(this.heroe)
       this.heroeservicio.actualizarHeroe(this.heroe).subscribe(repuesta => console.log('Respuesta',repuesta))
 
     }else{
       //Agregar
-
+      console.log("Agregar")
+      console.log(this.heroe)
       this.heroeservicio.agregarHeroe(this.heroe)
         .subscribe(datoHeroe => {
           this.router.navigate(['/heroes/editar',datoHeroe.id])
