@@ -16,7 +16,7 @@ const routes : Routes = [
     loadChildren : () => import('./heroes/heroes.module').then(m => m.HeroesModule),
     //con esta propiedad hacemos que se pueda cargar la ruta
     canLoad : [AuthGuard],
-    canActivate :[AuthGuard]
+    canActivate :[AuthGuard]//es
   },
   {
     path:'404',
