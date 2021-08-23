@@ -6,15 +6,21 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements /*CanActivate*/ CanLoad {
+export class AuthGuard implements CanActivate, CanLoad {
 
 
   constructor(private authservice: AuthService ){}
-  // canActivate(
-  //    route: ActivatedRouteSnapshot,
-  //    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-  //    return true;
-  // }
+  canActivate(
+     route: ActivatedRouteSnapshot,
+     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean > | boolean  {
+      if(this.authservice.auth.id){
+        return true;
+      }
+      console.log("Bloqueado por el authGuard - canActivate");
+      return false;
+  }
+
+  
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean > | Promise<boolean > | boolean  {
@@ -22,7 +28,7 @@ export class AuthGuard implements /*CanActivate*/ CanLoad {
     if(this.authservice.auth.id){
       return true;
     }
-    console.log("Bloqueado por el authGuard");
+    console.log("Bloqueado por el authGuard - canLoad");
     return false;
   }
 }

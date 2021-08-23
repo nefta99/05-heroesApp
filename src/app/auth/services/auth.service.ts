@@ -27,11 +27,14 @@ export class AuthService {
     return this.http.get<Auth>(`${this.baseUrl}/usuarios/1`)
     .pipe(
       //Esto se ejecuta primero que el subcribe que cosume el servicio
-      tap(resp => this._auth = resp)
+      tap(resp => this._auth = resp),
+      tap(xx => localStorage.setItem('id',xx.id))
     )
   }
 
   logout(){
+
+    
     this._auth = undefined;
   }
 

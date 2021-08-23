@@ -29,4 +29,12 @@ export class LoginComponent  {
     });
     // 
   }
+
+  ingresarSinlogin(){
+    this.authservice.logout();
+    this.router.navigate(['./heroes'])
+  }
+
+
+
 }
